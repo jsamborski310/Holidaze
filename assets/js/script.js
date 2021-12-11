@@ -1,3 +1,4 @@
+var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
 // Initializing Materialize DropDown
 /////////////////////////////////////////////
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
-var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
+
 
   
 

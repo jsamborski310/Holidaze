@@ -1,0 +1,27 @@
+
+.custom-container {
+    margin: 0 5%;
+}
+
+/* Quote. Nav bar. Right Side. */
+
+.quote {
+    line-height:0;
+    text-align:right;
+}
+
+/* Search Card. Left Side. */
+.search-card {
+    background-color: rgb(240, 240, 240);
+    padding:25px;
+    border-radius:15px;
+}
+
+/* Holiday List. Right Side. */
+.holiday-list-item {
+    border-radius: 15px;
+    background-color:rgb(240, 240, 240); 
+}
+.holiday-type-federal {
+    border-left:100px solid black;
+}

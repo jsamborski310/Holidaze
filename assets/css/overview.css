@@ -1,7 +1,9 @@
 body {
-    background-image: url("/assets/images/abstract-background.jpg");
+    background-image: url("https://raw.githubusercontent.com/jsamborski310/Holidaze/main/assets/images/abstract-background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: fixed;
+    background-attachment: fixed;
+    background-position: center;
 }
 main {
     padding: 80px 0;

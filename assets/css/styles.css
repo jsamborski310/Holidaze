@@ -12,16 +12,27 @@
 
 /* Search Card. Left Side. */
 .search-card {
-    background-color: rgb(240, 240, 240);
-    padding:25px;
+    background-color: rgb(190, 184, 184);
+    padding: 50px;
     border-radius:15px;
+
+}
+
+.searchCard {
+    padding: 1px;
+    background-color:rgb(190, 184, 184);
+    border-radius: 15px;
 }
 
 /* Holiday List. Right Side. */
 .holiday-list-item {
     border-radius: 15px;
-    background-color:rgb(240, 240, 240); 
+    background-color:rgb(190, 184, 184); 
 }
 .holiday-type-federal {
     border-left:100px solid black;
+}
+
+.page-footer {
+    background-color: #F5326E;
 }

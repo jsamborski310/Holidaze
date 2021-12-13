@@ -1,3 +1,14 @@
+:root {
+    --main-text: #000836;
+    --pink: #F5326E;
+    --theme-grey: #878AA0
+  }
+
+* {
+    font-family: 'Lato', sans-serif;
+    color: #000836;
+}
+
 body {
     background-image: url("https://raw.githubusercontent.com/jsamborski310/Holidaze/main/assets/images/abstract-background.jpg");
     background-repeat: no-repeat;
@@ -5,19 +16,25 @@ body {
     background-attachment: fixed;
     background-position: center;
 }
+
+/* Layout */
+
 main {
     padding: 80px 0;
 }
-p {
-    color:#000836;
-}
-
 
 .custom-container {
     margin: 0 5%;
 }
 
+
+.row .col.s12 {
+    margin-bottom: 50px;
+}
+
+
 /*Topbar*/
+
 .custom-nav {
     background-color:transparent;
     box-shadow:none;
@@ -34,18 +51,30 @@ p {
 
 
 /* Holiday List. Left Side. */
+
+h2 {
+    margin:0;
+    font-weight: 700;
+}
 .holiday-info {
     border-radius: 15px;
-    background-color:rgb(240, 240, 240); 
+    background-color: white; 
 }
 .holiday-type-federal {
-    border-left:100px solid black;
+    border-left:30px solid black;
 }
 .holiday-content {
     padding: 50px 40px;
 }
 .date {
     font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: var(--theme-grey);
+}
+.celebrated {
+    font-weight:700;
+
 }
 
 /* Today in History Card. Right Side. */
@@ -53,14 +82,12 @@ p {
 h3 {
     font-size: 25px;
     font-weight:700;
-    color:#000836;
 }
 h6 {
     font-weight: 700;
     font-size: 15px;
     line-height: 0;
     margin-top: 30px;
-    color:#000836;
 }
 
 .today-in-history {
@@ -68,4 +95,45 @@ h6 {
     box-shadow: 7px 7px 20px #00000031;
     padding: 40px 30px;
     border-radius: 15px;
+}
+
+
+/* Button */
+
+.new-search-btn {
+    background-color: var(--pink);
+    padding: 15px 40px;
+    line-height:0;
+    border-radius: 8px;
+    text-transform: capitalize;
+}
+
+/* Page Footer */
+
+.page-footer {
+    background-color: var(--pink);
+}
+.footer-copyright {
+    background-color: var(--pink);
+}
+
+.footer-container {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+.copyright-text {
+    color: #ffffff;
+}
+
+/* Media Query */
+
+@media only screen and (max-width: 992px) {
+
+    nav .brand-logo {
+        left: 12%;
+    }
+    .holiday-type-federal {
+        border-top:30px solid black;
+        border-left: none;
+    }
 }

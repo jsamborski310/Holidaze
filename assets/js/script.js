@@ -15,8 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
-var searchInput = 'Arbor Day'
+var searchInput = "Christmas Eve"
 
+// Template literal for search result listing
+var holidayListing = `
+  <section class="holiday-list-item holiday-type-federal">
+    <h5 class="hol-date">October 15, 2021</h5>
+    <h2 class="hol-name">Christmas</h2>
+    <p class="hol-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti voluptatum asperiores iste veritatis voluptatem ducimus ipsam esse vitae, voluptatibus itaque suscipit maiores aliquam ullam,libero mollitia! Sunt quaerat similique corrupti.</p>
+    <p>Celebrated in: <span class="hol-country">Canada</span></p>
+  </section>`
+
+// Get holidays matching search and render results to page
 function getHolidays() {
   var getHolidaysURL = `https://calendarific.com/api/v2/holidays?&api_key=${apiKey}&country=US&year=2021`
   var searchedHolDate;
@@ -47,10 +57,17 @@ function getHolidays() {
       searchedHolCountry = searchedHolidayData.country.name;
       searchedHolType = searchedHolidayData.type[0];
 
-      console.log("All variables passing from getHolidays to displayHolidays:")
-      console.log(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType)
+      // console.log("All variables passing from getHolidays to displayHolidays:")
+      // console.log(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType)
       
       // displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType);
+      // displayHolidays(searchedHolidayData)
+      document.querySelector('.hol-date').textContent = `${searchedHolDate}`;
+      document.querySelector('.hol-name').textContent = `${searchedHolName}`;
+      document.querySelector('.hol-desc').textContent = `${searchedHolDescription}`;
+      document.querySelector('.hol-country').textContent = `${searchedHolCountry}`;
+      // document.querySelector('.hol-type').textContent = `${searchedHolType}`;
+    
 
     }
   })
@@ -59,6 +76,25 @@ function getHolidays() {
 getHolidays();
 
 
+
+// Render search results to page
+function displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType) {
+// function displayHolidays(searchedHolidayData) {
+//   for (i = 0; i < 5; i++) {
+//     var holidayListingEl = document.createElement('div');
+//     holidayListingEl = holidayListing;
+    
+//     document.getElementById('#search-results').appendChild(holidayListingEl);
+    
+    document.querySelector('.hol-date').textContent = `${searchedHolDate}`;
+    document.querySelector('.hol-name').textContent = `${searchedHolName}`;
+    document.querySelector('.hol-desc').textContent = `${searchedHolDescription}`;
+    document.querySelector('.hol-country').textContent = `${searchedHolCountry}`;
+    // document.querySelector('.hol-type').textContent = `${searchedHolType}`;
+    
+
+  // }
+};
 
 
   

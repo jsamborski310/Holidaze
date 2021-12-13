@@ -79,16 +79,49 @@ function fetchFilteredHolidays(event)
 
 function getFilteredHolidays()
 {
+  // returns if either thisYearData or nextYearData isn't loaded
+  // when either fetch request finishes it will call this function, so the first one should always fail this
   if (! thisYearData || !nextYearData)
   {
     return;
   }
 
+  var countryFilterData = "";
+  var typeFilterData = "";
+  var startTimeFilterData = "2021-02-05";
+  var endTimeFilterData = "2021-07-15";
 
 
+  var allData = thisYearData.response.holidays.concat(nextYearData.response.holidays);
+
+  var filteredData = [];
+
+  
+
+  if (startTimeFilterData != "" && endTimeFilterData != "")
+  {
+    var startTimeMoment = moment(startTimeFilterData);
+    var endTimeMoment = moment(endTimeFilterData);
 
 
-  console.log("getFilteredHolidays got called");
+    console.log(allData);
+    console.log(allData.lenth);
+    for (var i = 0; i < allData.lenth; i++)
+    {
+      
+      var holidayMoment = moment(allData[i].date.iso);
+
+
+      if (startTimeMoment.isBefore(holidayMoment) && holidayMoment.isBefore(endTimeMoment))
+      {
+        filteredData.push(allData[i]);
+      }
+    }
+  } 
+
+
+  console.log(filteredData);
+
 }
 
 document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)

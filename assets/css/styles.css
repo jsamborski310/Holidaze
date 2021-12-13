@@ -1,3 +1,15 @@
+body {
+    background-image: url("https://raw.githubusercontent.com/jsamborski310/Holidaze/main/assets/images/abstract-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.custom-nav {
+    background-color:transparent;
+    box-shadow:none;
+}
 
 .custom-container {
     margin: 0 5%;
@@ -12,29 +24,38 @@
 
 /* Search Card. Left Side. */
 .search-card {
-    background-color: rgb(190, 184, 184);
-    padding: 50px;
-    border-radius:15px;
-
-}
-
-.searchCard {
-    padding: 1px;
-    background-color:rgb(190, 184, 184);
+    background-color: rgb(240, 240, 240);
+    padding:25px;
     border-radius: 15px;
+    margin-bottom: 40px;
 }
 
 /* Holiday List. Right Side. */
 .holiday-list-item {
     border-radius: 15px;
-    background-color:rgb(190, 184, 184); 
+    background-color:rgb(240, 240, 240); 
 }
 .holiday-type-federal {
     border-left:100px solid black;
 }
 
-
 .page-footer {
     background-color: #F5326E;
 }
 
+.mainContent {
+    margin-left: 100px;
+}
+
+.searchBtn {
+    background-color: #F5326E; 
+}
+
+h6 {
+    font-size: 30px;
+   font-weight: bold;
+}
+
+.brand-logo{
+    padding-bottom: 120px;
+}

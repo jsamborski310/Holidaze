@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
-var searchInput = "Christmas Eve"
+var searchField = document.querySelector('#search-field');
+var serachBar = document.querySelector('#searchbar');
+var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
 
@@ -70,9 +72,14 @@ function getHolidays() {
   })
 }
 
-getHolidays();
+// Event listener for holiday search, clears results, calls function with search term(s)
+searchField.addEventListener('submit', function(event) {
+  event.preventDefault();
+  searchInput = document.getElementById('searchbar').value.trim();
+  document.getElementById('search-results').innerHTML = "";
+  getHolidays(searchInput);
 
-
+})
 
 
 

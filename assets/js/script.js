@@ -117,8 +117,8 @@ function fetchFilteredHolidays(event)
 
   // get next year
   fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country="+country+"&year="+(thisYear+1))
-  .then(function (responce){
-    return responce.json();
+  .then(function (response){
+    return response.json();
   })
   .then(function (data)
   {

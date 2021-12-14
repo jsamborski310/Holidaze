@@ -16,17 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // });
 
 var searchInput = "Christmas Eve"
-
-// Template literal for search result listing
-var holidayListing = `
-<section class="holiday-info holiday-type-federal">
-  <div class="holiday-content">
-      <h5 class="date hol-date"></h5>
-      <h2 class="hol-name"></h2>
-      <p class="hol-desc"></p>
-      <p><span class="celebrated">Celebrated in:</span class="hol-country"></p>
-  </div>
-</section>`
+var holidayListing;
+var holidayListingEl;
 
 // Get holidays matching search and render results to page
 function getHolidays() {
@@ -37,7 +28,7 @@ function getHolidays() {
   var searchedHolCountry;
   var searchedHolType;
 
-  // Fetch request for holiday data (default: country = US, year = current year)
+   // Fetch request for holiday data (default: country = US, year = current year)
   fetch(getHolidaysURL)
   .then(function (response) {
     return response.json();
@@ -58,19 +49,23 @@ function getHolidays() {
       searchedHolDescription = searchedHolidayData.description;
       searchedHolCountry = searchedHolidayData.country.name;
       searchedHolType = searchedHolidayData.type[0];
-
-      // console.log("All variables passing from getHolidays to displayHolidays:")
-      // console.log(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType)
-      
-      // displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType);
-      // displayHolidays(searchedHolidayData)
-      document.querySelectorAll('.hol-date').textContent = `${searchedHolDate}`;
-      document.querySelectorAll('.hol-name').textContent = `${searchedHolName}`;
-      document.querySelectorAll('.hol-desc').textContent = `${searchedHolDescription}`;
-      document.querySelectorAll('.hol-country').textContent = `${searchedHolCountry}`;
-      // document.querySelector('.hol-type').textContent = `${searchedHolType}`;
     
-
+      // Template literal for search result listing
+      holidayListing = `
+        <section class="holiday-list-item holiday-type-federal mainContent">
+          <div class="holiday-content">
+              <h5 class="date hol-date">${searchedHolDate}</h5>
+              <h2 class="hol-name">${searchedHolName}</h2>
+              <p class="hol-desc">${searchedHolDescription}</p>
+              <p><span class="celebrated">Celebrated in:</span class="hol-country">${searchedHolCountry}</p>
+          </div>
+        </section>`
+      
+      // Render search listing to page
+      holidayListingEl = document.createElement('div');
+      holidayListingEl.innerHTML = holidayListing;
+      
+      document.getElementById('search-results').appendChild(holidayListingEl);
     }
   })
 }
@@ -79,24 +74,7 @@ getHolidays();
 
 
 
-// Render search results to page
-function displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType) {
-// function displayHolidays(searchedHolidayData) {
-//   for (i = 0; i < 5; i++) {
-//     var holidayListingEl = document.createElement('div');
-//     holidayListingEl = holidayListing;
-    
-//     document.getElementById('#search-results').appendChild(holidayListingEl);
-    
-    document.querySelector('.hol-date').textContent = `${searchedHolDate}`;
-    document.querySelector('.hol-name').textContent = `${searchedHolName}`;
-    document.querySelector('.hol-desc').textContent = `${searchedHolDescription}`;
-    document.querySelector('.hol-country').textContent = `${searchedHolCountry}`;
-    // document.querySelector('.hol-type').textContent = `${searchedHolType}`;
-    
 
-  // }
-};
 
 
   

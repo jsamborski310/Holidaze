@@ -19,12 +19,14 @@ var searchInput = "Christmas Eve"
 
 // Template literal for search result listing
 var holidayListing = `
-  <section class="holiday-list-item holiday-type-federal">
-    <h5 class="hol-date">October 15, 2021</h5>
-    <h2 class="hol-name">Christmas</h2>
-    <p class="hol-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti voluptatum asperiores iste veritatis voluptatem ducimus ipsam esse vitae, voluptatibus itaque suscipit maiores aliquam ullam,libero mollitia! Sunt quaerat similique corrupti.</p>
-    <p>Celebrated in: <span class="hol-country">Canada</span></p>
-  </section>`
+<section class="holiday-info holiday-type-federal">
+  <div class="holiday-content">
+      <h5 class="date hol-date"></h5>
+      <h2 class="hol-name"></h2>
+      <p class="hol-desc"></p>
+      <p><span class="celebrated">Celebrated in:</span class="hol-country"></p>
+  </div>
+</section>`
 
 // Get holidays matching search and render results to page
 function getHolidays() {
@@ -62,10 +64,10 @@ function getHolidays() {
       
       // displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType);
       // displayHolidays(searchedHolidayData)
-      document.querySelector('.hol-date').textContent = `${searchedHolDate}`;
-      document.querySelector('.hol-name').textContent = `${searchedHolName}`;
-      document.querySelector('.hol-desc').textContent = `${searchedHolDescription}`;
-      document.querySelector('.hol-country').textContent = `${searchedHolCountry}`;
+      document.querySelectorAll('.hol-date').textContent = `${searchedHolDate}`;
+      document.querySelectorAll('.hol-name').textContent = `${searchedHolName}`;
+      document.querySelectorAll('.hol-desc').textContent = `${searchedHolDescription}`;
+      document.querySelectorAll('.hol-country').textContent = `${searchedHolCountry}`;
       // document.querySelector('.hol-type').textContent = `${searchedHolType}`;
     
 

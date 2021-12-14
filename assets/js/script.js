@@ -51,8 +51,16 @@ function fetchFilteredHolidays(event)
   // find this year
   var thisYear = parseInt( moment().format("yyyy"));
 
+  // get the selected country
+  var country = ""// Make this value equal the value from the country selector element
+
+  if (country === "")
+  {
+    coutnry = "US"
+  }
+
   // get this year
-  fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country=US&year="+thisYear)
+  fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country="+country+"&year="+thisYear)
   .then(function (responce){
     return responce.json();
   })
@@ -64,7 +72,7 @@ function fetchFilteredHolidays(event)
   })
 
   // get next year
-  fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country=US&year="+(thisYear+1))
+  fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country="+country+"&year="+(thisYear+1))
   .then(function (responce){
     return responce.json();
   })
@@ -86,42 +94,36 @@ function getFilteredHolidays()
     return;
   }
 
-  var countryFilterData = "";
-  var typeFilterData = "";
-  var startTimeFilterData = "2021-02-05";
+  var startTimeFilterData = "2021-02-05"; // TODO make these have the value of the date filter elements
   var endTimeFilterData = "2021-07-15";
 
-
-  var allData = thisYearData.response.holidays.concat(nextYearData.response.holidays);
-
-  var filteredData = [];
+  var filteredData = thisYearData.response.holidays.concat(nextYearData.response.holidays);
 
   
 
-  if (startTimeFilterData != "" && endTimeFilterData != "")
+  if (startTimeFilterData !== "" && endTimeFilterData !== "")
   {
     var startTimeMoment = moment(startTimeFilterData);
     var endTimeMoment = moment(endTimeFilterData);
 
+    var tempData = []
 
-    console.log(allData);
-    console.log(allData.lenth);
-    for (var i = 0; i < allData.lenth; i++)
+    for (var i = 0; i < filteredData.length; i++)
     {
       
-      var holidayMoment = moment(allData[i].date.iso);
+      var holidayMoment = moment(filteredData[i].date.iso);
 
 
       if (startTimeMoment.isBefore(holidayMoment) && holidayMoment.isBefore(endTimeMoment))
       {
-        filteredData.push(allData[i]);
+        tempData.push(filteredData[i]);
       }
     }
+
+    filteredData = tempData;
   } 
 
-
-  console.log(filteredData);
-
+  //TODO print each element in filteredData using Nicks function
 }
 
 document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)

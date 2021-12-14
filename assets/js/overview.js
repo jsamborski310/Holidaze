@@ -1,6 +1,15 @@
-var eventsEl = document.getElementById('events');
+var eventEl = document.getElementById('event');
+var eventYearEL = document.getElementById('event-year');
 
-var eventsInfo;
+var deathEventEL = document.getElementById('death-event');
+var deathYearEL = document.getElementById('death-year');
+
+
+var eventInfo;
+var eventYear;
+
+var deathEvent;
+var deathYear;
 
 var getHistory = function () {
 
@@ -12,12 +21,26 @@ var getHistory = function () {
       })
       .then(function (source) {
         
-        
-        eventsInfo = document.createElement('p');
-        eventsInfo.textContent = source.data.Events[0].text;
-        eventsEl.append(eventsInfo);
+        // Event
+        eventInfo = document.createElement('p');
+        eventInfo.textContent = source.data.Events[0].text;
+        eventEl.append(eventInfo);
 
-        console.log("events" + source.data.Events.year);
+        eventYear = document.createElement('span');
+        eventYear.textContent = source.data.Events[0].year;
+        eventYearEL.append(eventYear);
+
+
+        // Death
+        deathEvent = document.createElement('p');
+        deathEvent.textContent = source.data.Deaths[0].text;
+        deathEventEL.append(deathEvent);
+
+        deathYear = document.createElement('span');
+        deathYear.textContent = source.data.Deaths[0].year;
+        deathYearEL.append(deathYear);
+
+        
         
       });
   

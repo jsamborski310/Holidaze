@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
-var searchInput = 'Arbor Day'
+var searchInput = "Christmas Eve"
+var holidayListing;
+var holidayListingEl;
 
+// Get holidays matching search and render results to page
 function getHolidays() {
   var getHolidaysURL = `https://calendarific.com/api/v2/holidays?&api_key=${apiKey}&country=US&year=2021`
   var searchedHolDate;
@@ -25,7 +28,7 @@ function getHolidays() {
   var searchedHolCountry;
   var searchedHolType;
 
-  // Fetch request for holiday data (default: country = US, year = current year)
+   // Fetch request for holiday data (default: country = US, year = current year)
   fetch(getHolidaysURL)
   .then(function (response) {
     return response.json();
@@ -46,17 +49,30 @@ function getHolidays() {
       searchedHolDescription = searchedHolidayData.description;
       searchedHolCountry = searchedHolidayData.country.name;
       searchedHolType = searchedHolidayData.type[0];
-
-      console.log("All variables passing from getHolidays to displayHolidays:")
-      console.log(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType)
+    
+      // Template literal for search result listing
+      holidayListing = `
+        <section class="holiday-list-item holiday-type-federal mainContent">
+          <div class="holiday-content">
+              <h5 class="date hol-date">${searchedHolDate}</h5>
+              <h2 class="hol-name">${searchedHolName}</h2>
+              <p class="hol-desc">${searchedHolDescription}</p>
+              <p><span class="celebrated">Celebrated in:</span class="hol-country">${searchedHolCountry}</p>
+          </div>
+        </section>`
       
-      // displayHolidays(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolType);
-
+      // Render search listing to page
+      holidayListingEl = document.createElement('div');
+      holidayListingEl.innerHTML = holidayListing;
+      
+      document.getElementById('search-results').appendChild(holidayListingEl);
     }
   })
 }
 
 getHolidays();
+
+
 
 
 

@@ -6,20 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="assets/css/materialize.css" media="screen,projection" />
 
-
     <!-- Importing Moment.js -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-    ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+    <!-- Google Font: Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&display=swap"
+        rel="stylesheet">
 
     <!--Our CSS-->
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -36,103 +37,111 @@
             <nav class="custom-nav">
                 <!--Logo-->
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">HoliDaze</a>
-
-                    <!--Quote-->
-                    <div class = "joke" id="joke">
-                       
-                        <p>- Chuck Norris</p> 
-                    </div>
-
+                    <a href="#" class="brand-logo">HoliDAZE</a>
                 </div>
-            </nav>
 
+                <!--Quote-->
+                <div class="joke" id="joke">
+                    <p class="quote-author">—Chuck Norris</p>
+                </div>
+
+            </nav>
         </header>
 
-        <main>
+    <main>
 
-            <div class="row">
+        <div class="row">
 
-                <!--Left-side Page Content -->
-                <div class="col s12 l3">
+            <!--Left-side Page Content -->
+            <div class="col s12 l3">
 
-                    <!--Search-->
+                <!--Search-->
+                <div class="row">
                     <form id="search-field" class="col s12 search-card">
-                        <h6>Search Holidays</h6>
+                        <h3>Search Holidays</h3>
                         <div class="input-field">
                             <input id="searchbar" type="text" id="autocomplete-input" class="autocomplete">
                             <label for="autocomplete-input">Search</label>
                         </div>
                     </form>
-
-
-                    <!-- Search Box -->
-                    <div class="row">
-                        <form class="col s12 search-card">
-                            <h6>Search Filters</h6>
-
-                            <!--Select Country-->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select>
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select>
-                                    <label><strong>Country</strong></label>
-                                </div>
-                            </div>
-
-
-                            <!--Choose Holiday Type. Option 1.-->
-                            <!-- <div class="row">
-                                <div class="input-field col s12">
-                                    <select>
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select>
-                                    <label><strong>Holiday Type</strong> </label>
-                                </div>
-                            </div> -->
-
-
-                            <!--Choose Holiday Type. Option 2. Can add colors in images.-->
-                            <!-- <div class="row">
-                                <div class="input-field col s12">
-                                    <select class="icons">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="" data-icon="images/sample-1.jpg">example 1</option>
-                                        <option value="" data-icon="images/office.jpg">example 2</option>
-                                        <option value="" data-icon="images/yuna.jpg">example 3</option>
-                                    </select>
-                                    <label>Date Range</label>
-                                </div>
-                            </div> -->
-
-                            <!--Datepicker-->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <label for="datepicker-inputt"><strong>Datepicker</strong></label>
-                                    <input type="text" id="datepicker-input" class="datepicker">
-                                </div>
-                            </div>
-
-                            <button class="btn waves-effect waves-light searchBtn" type="submit" name="action">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-
-                        </form>
-                    </div>
-
                 </div>
 
 
-                <div id="search-results" class="col s12 l9 ">
-                    <!-- Right-side page content  -->
-                    <!-- <section class="holiday-list-item holiday-type-federal mainContent">
+                <!-- Search Box -->
+                <div class="row">
+                    <form class="col s12 search-card filters">
+                        <h3>Search Filters</h3>
+
+                <!--Select Country-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Select Country</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!--Choose Holiday Type. Option 1.-->
+                <!-- <div class="row">
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <label><strong>Holiday Type</strong> </label>
+                        </div>
+                    </div> -->
+
+
+                <!--Choose Holiday Type. Option 2. Can add colors in images.-->
+                <!-- <div class="row">
+                        <div class="input-field col s12">
+                            <select class="icons">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="" data-icon="images/sample-1.jpg">example 1</option>
+                                <option value="" data-icon="images/office.jpg">example 2</option>
+                                <option value="" data-icon="images/yuna.jpg">example 3</option>
+                            </select>
+                            <label>Date Range</label>
+                        </div>
+                    </div> -->
+
+                <!--Datepicker-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="datepicker-inputt"><strong>Datepicker</strong></label>
+                        <input type="text" id="datepicker-input" class="datepicker">
+                    </div>
+                </div>
+
+                    <button class="btn waves-effect waves-light searchBtn" type="submit" name="action">Submit</button>
+
+                    </form> 
+                </div>
+
+                <!-- Previous Holidays Searched -->
+                <div class="row">
+                    <div class="col s12 search-card">
+                        <h3>Search History</h3>
+                        <div class="btnList">
+                            <button class="btn waves-effect waves-light prevSearchBtn" type="submit" name="action">Christmas Eve</button>
+                            <button class="btn waves-effect waves-light prevSearchBtn" type="submit" name="action">Christmas Eve</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Right-Side Page Content -->
+            <div id="search-results" class="col s12 l9 ">
+                <!-- <section class="holiday-list-item holiday-type-federal mainContent">
                         <h5>October 15, 2021</h5>
                         <h2>Christmas</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti voluptatum asperiores iste
@@ -142,25 +151,18 @@
                             mollitia! Sunt quaerat similique corrupti.</p>
                         <p>Celebrated in: <span>Canada</span></p>
                     </section> -->
-                </div>
-
-
+                      
             </div>
-
-
-
-
-
-        </main>
-
-    </div>
+        </div>
+    </main>
+</div>
 
 
 
 
 
     <footer class="page-footer">
-        <div class="container">
+        <div class="container footer-container">
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">HoliDaze</h5>
@@ -172,18 +174,21 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Creators</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/jsamborski310">Juanita Samborski</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/thenickedwards">Nick Edwards</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/EthanBuchanan">Ethan Buchanan</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/kasaipreston">Kasai Preston</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/jsamborski310">Juanita
+                                Samborski</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/thenickedwards">Nick
+                                Edwards</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/EthanBuchanan">Ethan
+                                Buchanan</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/kasaipreston">Kasai Preston</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Text
-
+                <p class="copyright-text">© 2014 Copyright Text</p>
             </div>
         </div>
     </footer>
@@ -205,5 +210,3 @@
 </body>
 
 </html>
-
-    

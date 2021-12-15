@@ -59,7 +59,7 @@ function getHolidays() {
               <h5 class="date hol-date">${searchedHolDate}</h5>
               <h2 class="hol-name">${searchedHolName}</h2>
               <p class="hol-desc">${searchedHolDescription}</p>
-              <p><span class="celebrated">Celebrated in:</span class="hol-country">${searchedHolCountry}</p>
+              <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry}</p>
           </div>
         </section>`
       

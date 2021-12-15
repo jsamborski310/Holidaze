@@ -17,7 +17,7 @@ body {
 
 /* Quote. Nav bar. Right Side. */
 
-.quote {
+.joke{
     line-height:0;
     text-align:right;
 }
@@ -59,3 +59,4 @@ h6 {
 .brand-logo{
     padding-bottom: 120px;
 }
+

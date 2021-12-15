@@ -1,6 +1,6 @@
 
+var norrisJoke = document.getElementById('joke')
 
-var quoteData;
 
 var getQuotes = function () {
 
@@ -22,7 +22,7 @@ getQuotes();
 
 var diplayJoke = function () {
 
+var jokedata = document.createElement('div');
 
 
-  
 }

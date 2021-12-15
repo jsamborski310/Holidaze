@@ -1,28 +1,32 @@
 
-var norrisJoke = document.getElementById('joke')
+var norrisJoke = $('#joke');
 
 
 var getQuotes = function () {
 
-var requestUrl = 'https://api.chucknorris.io/jokes/random';
+  var requestUrl = 'https://api.chucknorris.io/jokes/random';
 
-fetch(requestUrl)
-   
+  fetch(requestUrl)
+
     .then(function (response) {
-   
+
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+
+      diplayJoke(data.value);
     });
 
 }
 getQuotes();
 
 
-var diplayJoke = function () {
+var diplayJoke = function (data) {
 
-var jokedata = document.createElement('div');
+  var jokeData = `<h5>${data}</h5>`;
+
+  norrisJoke.prepend(jokeData);
+
 
 
 }

@@ -26,7 +26,7 @@ getQuotes();
 var diplayQuote= function (data) {
 
   var quoteData = `<h6>${data}</h6>`;
-  var authorName = `<p>${data}<p>`;
+
   randomQuote.append(quoteData);
 
 

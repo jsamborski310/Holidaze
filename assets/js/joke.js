@@ -23,7 +23,7 @@ getQuotes();
 
 var diplayJoke = function (data) {
 
-  var jokeData = `<h5>${data}</h5>`;
+  var jokeData = `<h6>${data}</h6>`;
 
   norrisJoke.prepend(jokeData);
 

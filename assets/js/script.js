@@ -95,8 +95,11 @@ var nextYearData;
 
 function fetchFilteredHolidays(event)
 {
+
+
   // stops page reload on submit
   event.preventDefault();
+
 
   // initialize thisYearData and nextYearData
   thisYearData = false;
@@ -106,7 +109,8 @@ function fetchFilteredHolidays(event)
   var thisYear = parseInt( moment().format("yyyy"));
 
   // get the selected country
-  var country = ""// Make this value equal the value from the country selector element
+  var countrySelectEL = document.querySelector("#country-select");
+  var country = countrySelectEL.value;
 
   if (country === "")
   {
@@ -177,6 +181,7 @@ function getFilteredHolidays()
     filteredData = tempData;
   } 
 
+
   //TODO print each element in filteredData using Nicks function
 }
 
@@ -193,14 +198,11 @@ function loadCountrylist ()
   .then(function (data) {
     var countryListEl = document.querySelector("#country-select");
 
-    //console.log(countryListEl.parentElement );
-   
-    //countryListEl.appendChild("france")
     var output = ""
 
     for (var i = 0; i < data.response.countries.length; i++)
     {
-      output += `<option value="${data.response.countries[i]["iso-3166"]}"> ${data.response.countries[i].country_name} <option>`;
+      output += `<option value="${data.response.countries[i]["iso-3166"]}"> ${data.response.countries[i].country_name} </option>`;
 
 
       var newCountryEl = document.createElement("option")
@@ -227,4 +229,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays);

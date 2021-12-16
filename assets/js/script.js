@@ -1,14 +1,8 @@
 var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
-// Initializing Materialize DropDown
-/////////////////////////////////////////////
-//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
+
 
   // document.addEventListener('DOMContentLoaded', function() {
   //   var elems = document.querySelectorAll('select');
@@ -135,8 +129,11 @@ var nextYearData;
 
 function fetchFilteredHolidays(event)
 {
+
+
   // stops page reload on submit
   event.preventDefault();
+
 
   // initialize thisYearData and nextYearData
   thisYearData = false;
@@ -146,7 +143,8 @@ function fetchFilteredHolidays(event)
   var thisYear = parseInt( moment().format("yyyy"));
 
   // get the selected country
-  var country = ""// Make this value equal the value from the country selector element
+  var countrySelectEL = document.querySelector("#country-select");
+  var country = countrySelectEL.value;
 
   if (country === "")
   {
@@ -217,7 +215,52 @@ function getFilteredHolidays()
     filteredData = tempData;
   } 
 
+
   //TODO print each element in filteredData using Nicks function
 }
 
-document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+function loadCountrylist ()
+{
+  
+
+  var requestURL = "https://calendarific.com/api/v2/countries?&api_key="+apiKey;
+
+  fetch(requestURL)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var countryListEl = document.querySelector("#country-select");
+
+    var output = ""
+
+    for (var i = 0; i < data.response.countries.length; i++)
+    {
+      output += `<option value="${data.response.countries[i]["iso-3166"]}"> ${data.response.countries[i].country_name} </option>`;
+
+
+      var newCountryEl = document.createElement("option")
+      newCountryEl.textContent = data.response.countries[i].country_name;
+      newCountryEl.setAttribute("value",data.response.countries[i]["iso-3166"])
+
+      //countryListEl.appendChild(newCountryEl)
+    }
+    console.log(output);
+    
+  })
+}
+
+// Initializing Materialize DropDown
+/////////////////////////////////////////////
+//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
+
+//loadCountrylist();
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+
+document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays);

@@ -1,14 +1,8 @@
 var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
-// Initializing Materialize DropDown
-/////////////////////////////////////////////
-//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
+
 
   // document.addEventListener('DOMContentLoaded', function() {
   //   var elems = document.querySelectorAll('select');
@@ -185,5 +179,53 @@ function getFilteredHolidays()
 
   //TODO print each element in filteredData using Nicks function
 }
+
+function loadCountrylist ()
+{
+  
+
+  var requestURL = "https://calendarific.com/api/v2/countries?&api_key="+apiKey;
+
+  fetch(requestURL)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var countryListEl = document.querySelector("#country-select");
+
+    console.log(countryListEl.parentElement );
+   
+    countryListEl.appendChild("france")
+
+
+    for (var i = 0; i < data.response.countries.length; i++)
+    {
+      var newCountryEl = document.createElement("option")
+      newCountryEl.textContent = data.response.countries[i].country_name;
+      newCountryEl.setAttribute("value",data.response.countries[i]["iso-3166"])
+
+      //countryListEl.appendChild(newCountryEl)
+    }
+
+    
+  })
+}
+
+// Initializing Materialize DropDown
+/////////////////////////////////////////////
+//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
+
+loadCountrylist();
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  var testEL = document.createElement("option");
+  testEL.textContent = "asdfjas;ldfasjl;";
+
+  var options = {'dropdownOptions':testEL}
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems,options);
+});
+
 
 document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)

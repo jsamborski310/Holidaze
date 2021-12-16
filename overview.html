@@ -33,12 +33,13 @@
                 <!--Logo-->
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">HoliDAZE</a>
+                </div>
 
-                    <!--Quote-->
-                    <div class="right">
-                        <button class="btn waves-effect waves-light new-search-btn" type="click">New Search
-                        </button>
-                    </div>
+                <!--New Seasrch Button-->
+                <div class="right">
+                    <a href="index.html">
+                    <button class="btn waves-effect waves-light new-search-btn" type="click">New Search</button>
+                    </a>
                 </div>
             </nav>
         </header>
@@ -49,13 +50,13 @@
 
                 <div class="col s12 l9">
                     <!-- Left-side page content  -->
-                    <section class="holiday-info holiday-type-federal">
-                        <div class="holiday-content">
+                    <section id="holiday-details search" class="holiday-info holiday-type-federal">
+                        <!-- <div class="holiday-content">
                         <h5 class="date">October 15, 2021</h5>
                         <h2>Christmas</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti voluptatum asperiores iste veritatis voluptatem ducimus ipsam esse vitae, voluptatibus itaque suscipit maiores aliquam ullam, libero mollitia! Sunt quaerat similique corrupti.</p>
                             <p><span class="celebrated">Celebrated in:</span> Canada</p>
-                        </div>
+                        </div> -->
                     </section>
                 </div>
 
@@ -65,12 +66,11 @@
 
                     <section class="today-in-history">
                         <h3>Today in History</h3>
-                        <h6>Events</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti.</p>
-                        <h6>Births</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti.</p>
-                        <h6>Deaths</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti.</p>
+                        <h6>Event in Year <span id="event-year"></span></h6>
+                        <div id="event"></div>
+
+                        <h6>Death in Year <span id="death-year"></span></h6>
+                        <div id="death-event"></div>
 
 
                     </section>
@@ -93,18 +93,17 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Creators</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Juanita Samborski</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Nick Edwards</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Ethan Buchanan</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Kasai Preston</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/jsamborski310">Juanita Samborski</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/thenickedwards">Nick Edwards</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/EthanBuchanan">Ethan Buchanan</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/kasaipreston">Kasai Preston</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
-            <div class="container copyright-text">
-                © 2014 Copyright Text
-
+            <div class="container ">
+                <p class="copyright-text">© 2014 Copyright Text</p>
             </div>
         </div>
     </footer>
@@ -119,6 +118,7 @@
     <script type="text/javascript" src="assets/js/materialize.js"></script>
 
     <!--Our JavaScript-->
+    <script src="assets/js/script.js"></script>
     <script src="assets/js/overview.js"></script>
 </body>
 

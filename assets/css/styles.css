@@ -1,3 +1,14 @@
+:root {
+    --main-text: #000836;
+    --pink: #F5326E;
+    --theme-grey: #878AA0
+  }
+
+* {
+    font-family: 'Lato', sans-serif;
+    color: #000836;
+}
+
 body {
     background-image: url("https://raw.githubusercontent.com/jsamborski310/Holidaze/main/assets/images/abstract-background.jpg");
     background-repeat: no-repeat;
@@ -6,28 +17,114 @@ body {
     background-position: center;
 }
 
-.custom-nav {
-    background-color:transparent;
-    box-shadow:none;
-}
+/* Layout */
 
+main {
+    padding: 80px 0;
+}
 .custom-container {
     margin: 0 5%;
 }
-
-/* Quote. Nav bar. Right Side. */
-
-.quote {
-    line-height:0;
-    text-align:right;
+.col.s12 {
+    padding: 20px 20px 40px 20px;
 }
+
+/* Nav bar. Quote. Right Side. */
+
+.custom-nav {
+    padding-top: 20px;
+    padding-bottom:20px;
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color:transparent;
+    box-shadow:none;
+    height:100px;
+}
+.nav-wrapper{
+    flex:2;
+}
+.joke {
+    flex:2;
+}
+.joke h6 {
+    font-size: 1.25em;
+    font-style:italic;
+    font-weight:400;
+    color: white;
+    line-height: 1.4em;
+    text-align:right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-bottom:0;
+}
+.quote-author {
+    color: white;
+    font-weight:300;
+    margin-top:0;
+    text-align:right;
+    line-height:2em;
+    text-transform:uppercase;
+    letter-spacing:0.3em;
+}
+
 
 /* Search Card. Left Side. */
 .search-card {
     background-color: rgb(240, 240, 240);
-    padding:25px;
     border-radius: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+}
+.search-card h3 {
+    font-size:25px;
+    font-weight:600;
+}
+input[type=text]:not(.browser-default) {
+    border-bottom: 2px solid black;
+}
+.filters .input-field {
+    margin-bottom: -50px;
+    padding-bottom: 50px;
+}
+
+.select-wrapper input.select-dropdown:focus,
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom:2px solid var(--pink);
+    box-shadow: none;
+}
+.searchBtn {
+    width:100%;
+    background-color: var(--pink);
+    padding: 15px 40px;
+    line-height:0;
+    border-radius: 8px;
+    text-transform: capitalize;
+}
+.select-wrapper .caret {
+    fill: var(--pink);
+}
+.input-field > label {
+    top:auto;
+    font-size:16px;
+}
+.input-field.col label {
+    left: 1.4rem;
+}
+.dropdown-content {
+    border-radius:15px;
+}
+.dropdown-content li > span {
+    color:black;
+}
+.dropdown-content li > span:hover {
+    color: var(--pink)
+}
+.active {
+    color: var(--theme-grey)
+
 }
 
 /* Holiday List. Right Side. */
@@ -36,26 +133,79 @@ body {
     background-color:rgb(240, 240, 240); 
 }
 .holiday-type-federal {
-    border-left:100px solid black;
+    border-left:60px solid var(--pink);
 }
 
-.page-footer {
-    background-color: #F5326E;
-}
 
-.mainContent {
-    margin-left: 100px;
-}
-
+/* Sidebar */
 .searchBtn {
     background-color: #F5326E; 
 }
 
 h6 {
     font-size: 30px;
-   font-weight: bold;
+    font-weight: bold;
+}
+/* Previously Searched Buttons */
+.btnList {
+    margin-top:35px;
+}
+.prevSearchBtn {
+    width:100%;
+    background-color: var(--pink);
+    padding: 15px 40px;
+    line-height:0;
+    border-radius: 8px;
+    text-transform: capitalize;
+    margin:5px 0;
+    border:none;
 }
 
-.brand-logo{
-    padding-bottom: 120px;
+/* Holiday Listing */
+
+h2{
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 0;
+    margin-top: 30px;
+}
+.date {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: var(--theme-grey);
+}
+.celebrated {
+    font-weight:700;
+}
+
+.holiday-list-item {
+    background-color:white;
+    box-shadow: 7px 7px 20px #00000031;
+    padding: 20px 30px;
+    margin-bottom:20px;
+    border-radius: 15px;
+}
+
+/* Page Footer */
+
+.page-footer {
+    background-color: var(--pink);
+}
+.footer-copyright {
+    background-color: var(--pink);
+}
+
+.footer-container {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+.copyright-text {
+    color: #ffffff;
+}
+@media only screen and (max-width: 992px) {
+
+    nav .brand-logo {
+        left: 22%;
+    }
 }

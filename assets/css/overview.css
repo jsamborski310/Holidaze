@@ -22,9 +22,25 @@ body {
 main {
     padding: 80px 0;
 }
-
 .custom-container {
     margin: 0 5%;
+}
+
+.custom-nav {
+    padding-top: 20px;
+    padding-bottom:20px;
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color:transparent;
+    height:100px;
+}
+.nav-wrapper{
+    flex:2;
+}
+.right {
+    flex:2;
+    text-align: right;
 }
 
 
@@ -38,6 +54,7 @@ main {
 .custom-nav {
     background-color:transparent;
     box-shadow:none;
+    height:100px;
 }
 
 
@@ -61,7 +78,7 @@ h2 {
     background-color: white; 
 }
 .holiday-type-federal {
-    border-left:30px solid black;
+    border-left:30px solid var(--pink);
 }
 .holiday-content {
     padding: 50px 40px;
@@ -74,7 +91,6 @@ h2 {
 }
 .celebrated {
     font-weight:700;
-
 }
 
 /* Today in History Card. Right Side. */
@@ -130,10 +146,10 @@ h6 {
 @media only screen and (max-width: 992px) {
 
     nav .brand-logo {
-        left: 12%;
+        left: 22%;
     }
     .holiday-type-federal {
-        border-top:30px solid black;
+        border-top:30px solid var(--pink);
         border-left: none;
     }
 }

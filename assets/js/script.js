@@ -81,9 +81,36 @@ searchField.addEventListener('submit', function(event) {
 
 })
 
+/////////////////////////////////////
+// Event listener for holiday listing.
+
+
+// var selectedHoliday = document.getElementById('search-results');
+// var holidayDetails = document.getElementById('holiday-details');
+// var holidayDetailsContent;
+// var nameOfHoliday;
 
 
 
+// selectedHoliday.addEventListener('click', function(event) {
+//   event.preventDefault();
+
+//   nameOfHoliday = event.target.children[1];
+
+//   window.location.href = 'overview.html';
+
+//   getHolidays(nameOfHoliday);
+  
+ 
+//   // holidayDetails.innerHTML = holidayDetailsContent;
+  
+      
+//   // document.getElementById('search-results').appendChild(holidayDetails);
+
+ 
+
+// })
+/////////////////////////////////////
   
 
 

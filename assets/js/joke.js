@@ -1,10 +1,10 @@
 
-var norrisJoke = $('#joke');
+var randomQuote = $('#joke');
 
 
 var getQuotes = function () {
 
-  var requestUrl = 'https://api.chucknorris.io/jokes/random';
+  var requestUrl = 'http://quotes.stormconsultancy.co.uk/random.json';
 
   fetch(requestUrl)
 
@@ -13,19 +13,21 @@ var getQuotes = function () {
       return response.json();
     })
     .then(function (data) {
-
-      diplayJoke(data.value);
+console.log(data)
+      diplayQuote(data.quote);
+     
+      diplayQuote('-' + data.author);
     });
 
 }
 getQuotes();
 
 
-var diplayJoke = function (data) {
+var diplayQuote= function (data) {
 
-  var jokeData = `<h6>${data}</h6>`;
-
-  norrisJoke.prepend(jokeData);
+  var quoteData = `<h6>${data}</h6>`;
+  var authorName = `<p>${data}<p>`;
+  randomQuote.append(quoteData);
 
 
 

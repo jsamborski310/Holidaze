@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
-var searchInput = "Christmas Eve"
+var searchField = document.querySelector('#search-field');
+var serachBar = document.querySelector('#searchbar');
+var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
 
@@ -57,7 +59,7 @@ function getHolidays() {
               <h5 class="date hol-date">${searchedHolDate}</h5>
               <h2 class="hol-name">${searchedHolName}</h2>
               <p class="hol-desc">${searchedHolDescription}</p>
-              <p><span class="celebrated">Celebrated in:</span class="hol-country">${searchedHolCountry}</p>
+              <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry}</p>
           </div>
         </section>`
       
@@ -70,13 +72,45 @@ function getHolidays() {
   })
 }
 
-getHolidays();
+// Event listener for holiday search, clears results, calls function with search term(s)
+searchField.addEventListener('submit', function(event) {
+  event.preventDefault();
+  searchInput = document.getElementById('searchbar').value.trim();
+  document.getElementById('search-results').innerHTML = "";
+  getHolidays(searchInput);
+
+})
+
+/////////////////////////////////////
+// Event listener for holiday listing.
+
+
+// var selectedHoliday = document.getElementById('search-results');
+// var holidayDetails = document.getElementById('holiday-details');
+// var holidayDetailsContent;
+// var nameOfHoliday;
 
 
 
+// selectedHoliday.addEventListener('click', function(event) {
+//   event.preventDefault();
 
+//   nameOfHoliday = event.target.children[1];
 
+//   window.location.href = 'overview.html';
 
+//   getHolidays(nameOfHoliday);
+  
+ 
+//   // holidayDetails.innerHTML = holidayDetailsContent;
+  
+      
+//   // document.getElementById('search-results').appendChild(holidayDetails);
+
+ 
+
+// })
+/////////////////////////////////////
   
 
 

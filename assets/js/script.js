@@ -15,11 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
   //   var instances = M.FormSelect.init(elems, options);
   // });
 
+
+// Varaibles for holiday seach and getHolidays function
 var searchField = document.querySelector('#search-field');
 var serachBar = document.querySelector('#searchbar');
 var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
+
+// Variables to dislay search history from local storage
+searchesArray = [];
+var pastSearches = JSON.parse(localStorage.getItem('searches'));
 
 // Get holidays matching search and render results to page
 function getHolidays() {
@@ -66,8 +72,18 @@ function getHolidays() {
       // Render search listing to page
       holidayListingEl = document.createElement('div');
       holidayListingEl.innerHTML = holidayListing;
-      
+
       document.getElementById('search-results').appendChild(holidayListingEl);
+
+      // Template literal for search history button
+      var searchHistBut = `
+      <button class="btn waves-effect waves-light prevSearchBtn" type="submit" name="action">${searchInput}</button>`
+
+      // Add last search to search history in local storage
+      searchesArray.push(searchInput);    
+      localStorage.setItem('searches', JSON.stringify(searchesArray));
+      console.log("pastSearches is " + searchesArray);
+
     }
   })
 }

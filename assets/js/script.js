@@ -84,6 +84,15 @@ function getHolidays() {
       localStorage.setItem('searches', JSON.stringify(searchesArray));
       console.log("pastSearches is " + searchesArray);
 
+      // Render current search as button in search history
+      var searchHistButEl = document.createElement('button');
+      searchHistButEl.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+      searchHistButEl.textContent = searchInput;
+
+
+      // searchHistButEl.addEventListener
+      document.querySelector('#search-history').appendChild(searchHistButEl);
+
     }
   })
 }

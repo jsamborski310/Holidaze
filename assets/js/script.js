@@ -45,6 +45,18 @@ function getHolidays() {
     console.log("data from getHolidays is:");
     console.log(data);
 
+    // Add current search to search history in local storage
+    searchesArray.push(searchInput);    
+    localStorage.setItem('searches', JSON.stringify(searchesArray));
+    console.log("pastSearches is " + searchesArray);
+
+    // Render current search as button in search history
+    var searchHistBut = document.createElement('button');
+    searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+    searchHistBut.textContent = searchInput;
+    // TODO: searchHistBut.addEventListener ('click', searchFromHistory);
+    document.querySelector('#search-history').appendChild(searchHistBut);
+
     // Iterate to find holiday name that matches
     for (searchedHolidayData of data.response.holidays) {
       if (searchInput !== searchedHolidayData.name) continue;
@@ -74,25 +86,7 @@ function getHolidays() {
       holidayListingEl.innerHTML = holidayListing;
 
       document.getElementById('search-results').appendChild(holidayListingEl);
-
-      // Template literal for search history button
-      var searchHistBut = `
-      <button class="btn waves-effect waves-light prevSearchBtn" type="submit" name="action">${searchInput}</button>`
-
-      // Add last search to search history in local storage
-      searchesArray.push(searchInput);    
-      localStorage.setItem('searches', JSON.stringify(searchesArray));
-      console.log("pastSearches is " + searchesArray);
-
-      // Render current search as button in search history
-      var searchHistButEl = document.createElement('button');
-      searchHistButEl.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
-      searchHistButEl.textContent = searchInput;
-
-
-      // searchHistButEl.addEventListener
-      document.querySelector('#search-history').appendChild(searchHistButEl);
-
+  
     }
   })
 }
@@ -246,3 +240,19 @@ function getFilteredHolidays()
 }
 
 document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+
+// Display search history from local storage
+function displaySearchHistory() {
+  var pastSearches = JSON.parse(localStorage.getItem('searches'));
+  if (pastSearches) {
+    for (i = 0; i < pastSearches.length; i++) {
+      var searchHistBut = document.createElement('button');
+      searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+      searchHistBut.textContent = pastSearches[i];
+      // TODO: searchHistBut.addEventListener ('click', searchFromHistory);
+      document.querySelector('#search-history').appendChild(searchHistBut);
+    }
+  }
+};
+
+displaySearchHistory();

@@ -47,3 +47,38 @@ var getHistory = function () {
   };
 
   getHistory();
+
+
+  // var holidayDetails;
+  var holidayEl;
+  
+  
+  ///////////////////////////////////////
+
+  var holidayOverview = document.getElementById("holiday-overview");
+
+  function showHolidayOverview () {
+
+   var  holidayDetails = JSON.parse(localStorage.getItem('details'));
+
+   holidayDate = moment(holidayDetails.date, 'YYYY-MM-DD').format('MMMM DD');
+
+    
+    holidayEl = `
+  
+    <h5 class="date">${holidayDate}</h5>
+    <h2>${holidayDetails.holname}</h2>
+    <p>${holidayDetails.description}</p>
+    <p><span class="celebrated">Celebrated in:</span> ${holidayDetails.country}</p>
+   
+    `
+
+    holidayContent = document.createElement('div');
+    holidayContent.setAttribute("class", "holiday-content");
+    holidayContent.innerHTML = holidayEl;
+    
+    holidayOverview.append(holidayContent);
+
+  }
+
+  showHolidayOverview ()

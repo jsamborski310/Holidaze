@@ -15,6 +15,12 @@ var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
 
+
+/////////////////////////
+var holidayItem;
+var holidayDetailsGroup = [];
+//////////////////////////
+
 // Get holidays matching search and render results to page
 function getHolidays() {
   var getHolidaysURL = `https://calendarific.com/api/v2/holidays?&api_key=${apiKey}&country=US&year=2021`
@@ -60,8 +66,44 @@ function getHolidays() {
       // Render search listing to page
       holidayListingEl = document.createElement('div');
       holidayListingEl.innerHTML = holidayListing;
+      holidayListingEl.setAttribute("class", "holidayItem");
       
       document.getElementById('search-results').appendChild(holidayListingEl);
+
+
+
+      ///////////////////////////////
+      //Event Listener for Holiday Listing. Setting Local Storage. 
+      
+      holidayItem = document.querySelectorAll(".holidayItem");
+
+      holidayItem.forEach((holidayItem) => {
+
+        holidayItem.setAttribute("style", "cursor: pointer;")
+
+        holidayItem.addEventListener('click', function() {
+          console.log("something else");
+
+
+          var holidayDetails = {
+            holname: searchedHolName,
+            date: searchedHolDate,
+            description: searchedHolDescription,
+            country: searchedHolCountry
+          };
+      
+          holidayDetailsGroup.push(holidayDetails);
+      
+          localStorage.setItem('details', JSON.stringify(holidayDetails));
+
+          window.location.href="overview.html";
+        });
+
+      })
+     
+
+      ///////////////////////////////////
+
     }
   })
 }
@@ -75,47 +117,6 @@ searchField.addEventListener('submit', function(event) {
 
 })
 
-/////////////////////////////////////
-// Event listener for holiday listing.
-
-
-var selectedHoliday = document.getElementById('search-results');
-
-
-// var holidayDetails = document.getElementById('holiday-details');
-// var holidayDetailsContent;
-// var nameOfHoliday;
-
-var holidayName = document.querySelector(".hol-name")
-
-selectedHoliday.addEventListener('click', function(event) {
-
-  console.log("testing");
-  event.preventDefault();
-
-  holidayName = event.target;
-  console.log("Holiday Name: " + holidayName);
-
-
-  // nameOfHoliday = event.target.value;
-  // console.log(nameOfHoliday);
-
-  
-
-  // getHolidays(nameOfHoliday);
-
-  // window.location.href = `overview.html?name=${nameOfHoliday}`;
-  
- 
-  // holidayDetails.innerHTML = holidayDetailsContent;
-  
-      
-  // document.getElementById('search-results').appendChild(holidayDetails);
-
- 
-
-})
-/////////////////////////////////////
   
 
 
@@ -275,3 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays);
+
+
+
+
+
+
+
+

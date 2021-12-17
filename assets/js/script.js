@@ -73,6 +73,8 @@ function getHolidays() {
 
 
       ///////////////////////////////
+      //Event Listener for Holiday Listing. Setting Local Storage. 
+      
       holidayItem = document.querySelectorAll(".holidayItem");
 
       holidayItem.forEach((holidayItem) => {
@@ -115,13 +117,6 @@ searchField.addEventListener('submit', function(event) {
 
 })
 
-/////////////////////////////////////
-// Event listener for holiday listing.
-
-
-
-
-/////////////////////////////////////
   
 
 

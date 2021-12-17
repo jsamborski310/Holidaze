@@ -49,7 +49,6 @@ var getHistory = function () {
   getHistory();
 
 
-  // var holidayDetails;
   var holidayEl;
   
   

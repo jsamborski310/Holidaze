@@ -1,20 +1,31 @@
 var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
+// Initializing Materialize DropDown
+/////////////////////////////////////////////
+//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('select');
+//   var instances = M.FormSelect.init(elems, options);
+// });
 
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
-
+// Varaibles for holiday seach and getHolidays function
 var searchField = document.querySelector('#search-field');
 var serachBar = document.querySelector('#searchbar');
 var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
 
+// Variables to dislay search history from local storage
+searchesArray = [];
+var pastSearches = JSON.parse(localStorage.getItem('searches'));
 
 /////////////////////////
 var holidayItem;
@@ -28,7 +39,7 @@ function getHolidays() {
   var searchedHolName;
   var searchedHolDescription;
   var searchedHolCountry;
-  var searchedHolType;
+  // var searchedHolType; to be used later if type added to filter search
 
    // Fetch request for holiday data (default: country = US, year = current year)
   fetch(getHolidaysURL)
@@ -38,6 +49,19 @@ function getHolidays() {
   .then(function (data) {
     console.log("data from getHolidays is:");
     console.log(data);
+
+    // Add current search to search history in local storage
+    searchesArray.push(searchInput);    
+    localStorage.setItem('searches', JSON.stringify(searchesArray));
+    console.log("pastSearches is " + searchesArray);
+
+    // TODO: move the button creation for the search history out of the fetch function and into the event listener to prevent dupe buttons in search history
+    // Render current search as button in search history
+    var searchHistBut = document.createElement('button');
+    searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+    searchHistBut.textContent = searchInput;
+    // TODO: searchHistBut.addEventListener ('click', searchFromHistory);
+    document.querySelector('#search-history').appendChild(searchHistBut);
 
     // Iterate to find holiday name that matches
     for (searchedHolidayData of data.response.holidays) {
@@ -67,11 +91,9 @@ function getHolidays() {
       holidayListingEl = document.createElement('div');
       holidayListingEl.innerHTML = holidayListing;
       holidayListingEl.setAttribute("class", "holidayItem");
-      
+
       document.getElementById('search-results').appendChild(holidayListingEl);
-
-
-
+  
       ///////////////////////////////
       //Event Listener for Holiday Listing. Setting Local Storage. 
       
@@ -103,7 +125,6 @@ function getHolidays() {
      
 
       ///////////////////////////////////
-
     }
   })
 }
@@ -112,13 +133,12 @@ function getHolidays() {
 searchField.addEventListener('submit', function(event) {
   event.preventDefault();
   searchInput = document.getElementById('searchbar').value.trim();
-  document.getElementById('search-results').innerHTML = "";
-  getHolidays(searchInput);
-
+  if (searchInput.length == 0) {return}
+  else {
+    document.getElementById('search-results').innerHTML = "";
+    getHolidays(searchInput);
+  }
 })
-
-  
-
 
 
 // Initializing Materialize DatePicker
@@ -231,6 +251,8 @@ function getFilteredHolidays()
   //TODO print each element in filteredData using Nicks function
 }
 
+document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+
 function loadCountrylist ()
 {
   
@@ -281,6 +303,28 @@ document.querySelector("#filter-search").addEventListener("submit",fetchFiltered
 
 
 
+// Display search history from local storage
+function displaySearchHistory() {
+  var pastSearches = JSON.parse(localStorage.getItem('searches'));
+  if (pastSearches) {
+    for (i = 0; i < pastSearches.length; i++) {
+      var searchHistBut = document.createElement('button');
+      searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+      searchHistBut.textContent = pastSearches[i];
+      searchHistBut.addEventListener ('click', searchFromHistory);
+      document.querySelector('#search-history').appendChild(searchHistBut);
+    }
+  }
+};
 
+displaySearchHistory();
+
+// Search from search history
+function searchFromHistory (event) {
+  event.preventDefault();
+  searchInput = event.target.textContent;
+  document.getElementById('search-results').innerHTML = "";
+  getHolidays(searchInput);
+}
 
 

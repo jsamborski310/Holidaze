@@ -50,19 +50,6 @@ function getHolidays() {
     console.log("data from getHolidays is:");
     console.log(data);
 
-    // Add current search to search history in local storage
-    searchesArray.push(searchInput);    
-    localStorage.setItem('searches', JSON.stringify(searchesArray));
-    console.log("pastSearches is " + searchesArray);
-
-    // TODO: move the button creation for the search history out of the fetch function and into the event listener to prevent dupe buttons in search history
-    // Render current search as button in search history
-    var searchHistBut = document.createElement('button');
-    searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
-    searchHistBut.textContent = searchInput;
-    // TODO: searchHistBut.addEventListener ('click', searchFromHistory);
-    document.querySelector('#search-history').appendChild(searchHistBut);
-
     // Iterate to find holiday name that matches
     for (searchedHolidayData of data.response.holidays) {
       if (searchInput !== searchedHolidayData.name) continue;
@@ -136,6 +123,19 @@ searchField.addEventListener('submit', function(event) {
   if (searchInput.length == 0) {return}
   else {
     document.getElementById('search-results').innerHTML = "";
+
+    // Add current search to search history in local storage
+    searchesArray.push(searchInput);    
+    localStorage.setItem('searches', JSON.stringify(searchesArray));
+    console.log("pastSearches is " + searchesArray);
+
+    // Render current search as button in search history
+    var searchHistBut = document.createElement('button');
+    searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+    searchHistBut.textContent = searchInput;
+    searchHistBut.addEventListener ('click', searchFromHistory);
+    document.querySelector('#search-history').appendChild(searchHistBut);
+
     getHolidays(searchInput);
   }
 })

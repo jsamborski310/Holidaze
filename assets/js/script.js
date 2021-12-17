@@ -50,6 +50,7 @@ function getHolidays() {
     localStorage.setItem('searches', JSON.stringify(searchesArray));
     console.log("pastSearches is " + searchesArray);
 
+    // TODO: move the button creation for the search history out of the fetch function and into the event listener to prevent dupe buttons in search history
     // Render current search as button in search history
     var searchHistBut = document.createElement('button');
     searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
@@ -262,7 +263,6 @@ displaySearchHistory();
 // Search from search history
 function searchFromHistory (event) {
   event.preventDefault();
-  console.log("Clicked me!")
   searchInput = event.target.textContent;
   document.getElementById('search-results').innerHTML = "";
   getHolidays(searchInput);

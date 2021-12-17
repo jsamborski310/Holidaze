@@ -34,7 +34,7 @@ function getHolidays() {
   var searchedHolName;
   var searchedHolDescription;
   var searchedHolCountry;
-  var searchedHolType;
+  // var searchedHolType; to be used later if type added to filter search
 
    // Fetch request for holiday data (default: country = US, year = current year)
   fetch(getHolidaysURL)
@@ -95,9 +95,11 @@ function getHolidays() {
 searchField.addEventListener('submit', function(event) {
   event.preventDefault();
   searchInput = document.getElementById('searchbar').value.trim();
-  document.getElementById('search-results').innerHTML = "";
-  getHolidays(searchInput);
-
+  if (searchInput.length == 0) {return}
+  else {
+    document.getElementById('search-results').innerHTML = "";
+    getHolidays(searchInput);
+  }
 })
 
 /////////////////////////////////////
@@ -249,10 +251,19 @@ function displaySearchHistory() {
       var searchHistBut = document.createElement('button');
       searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
       searchHistBut.textContent = pastSearches[i];
-      // TODO: searchHistBut.addEventListener ('click', searchFromHistory);
+      searchHistBut.addEventListener ('click', searchFromHistory);
       document.querySelector('#search-history').appendChild(searchHistBut);
     }
   }
 };
 
 displaySearchHistory();
+
+// Search from search history
+function searchFromHistory (event) {
+  event.preventDefault();
+  console.log("Clicked me!")
+  searchInput = event.target.textContent;
+  document.getElementById('search-results').innerHTML = "";
+  getHolidays(searchInput);
+}

@@ -14,3 +14,21 @@ This element is created on line 78.
 Need to format the date so that it's just month and day. Exclude year. 
 
 ## Add Button to Search Holidays
+
+
+    holidayEl = `
+    
+    <div class="holiday-content">
+    <h5 class="date">${date}</h5>
+    <h2>${holname}</h2>
+    <p>${description}</p>
+    <p><span class="celebrated">Celebrated in:</span> ${country}</p>
+    </div>
+    
+    `
+
+    holidayOverview.append(holidayEl);
+
+
+
+    holidayDetails.date

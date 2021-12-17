@@ -1,19 +1,36 @@
 var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
+// Initializing Materialize DropDown
+/////////////////////////////////////////////
+//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('select');
+//   var instances = M.FormSelect.init(elems, options);
+// });
 
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
-
+// Varaibles for holiday seach and getHolidays function
 var searchField = document.querySelector('#search-field');
 var serachBar = document.querySelector('#searchbar');
 var searchInput = "Christmas Eve";
 var holidayListing;
 var holidayListingEl;
+
+// Variables to dislay search history from local storage
+searchesArray = [];
+var pastSearches = JSON.parse(localStorage.getItem('searches'));
+
+/////////////////////////
+var holidayItem;
+var holidayDetailsGroup = [];
+//////////////////////////
 
 // Get holidays matching search and render results to page
 function getHolidays() {
@@ -22,7 +39,7 @@ function getHolidays() {
   var searchedHolName;
   var searchedHolDescription;
   var searchedHolCountry;
-  var searchedHolType;
+  // var searchedHolType; to be used later if type added to filter search
 
    // Fetch request for holiday data (default: country = US, year = current year)
   fetch(getHolidaysURL)
@@ -60,8 +77,41 @@ function getHolidays() {
       // Render search listing to page
       holidayListingEl = document.createElement('div');
       holidayListingEl.innerHTML = holidayListing;
-      
+      holidayListingEl.setAttribute("class", "holidayItem");
+
       document.getElementById('search-results').appendChild(holidayListingEl);
+  
+      ///////////////////////////////
+      //Event Listener for Holiday Listing. Setting Local Storage. 
+      
+      holidayItem = document.querySelectorAll(".holidayItem");
+
+      holidayItem.forEach((holidayItem) => {
+
+        holidayItem.setAttribute("style", "cursor: pointer;")
+
+        holidayItem.addEventListener('click', function() {
+          console.log("something else");
+
+
+          var holidayDetails = {
+            holname: searchedHolName,
+            date: searchedHolDate,
+            description: searchedHolDescription,
+            country: searchedHolCountry
+          };
+      
+          holidayDetailsGroup.push(holidayDetails);
+      
+          localStorage.setItem('details', JSON.stringify(holidayDetails));
+
+          window.location.href="overview.html";
+        });
+
+      })
+     
+
+      ///////////////////////////////////
     }
   })
 }
@@ -70,54 +120,25 @@ function getHolidays() {
 searchField.addEventListener('submit', function(event) {
   event.preventDefault();
   searchInput = document.getElementById('searchbar').value.trim();
-  document.getElementById('search-results').innerHTML = "";
-  getHolidays(searchInput);
+  if (searchInput.length == 0) {return}
+  else {
+    document.getElementById('search-results').innerHTML = "";
 
+    // Add current search to search history in local storage
+    searchesArray.push(searchInput);    
+    localStorage.setItem('searches', JSON.stringify(searchesArray));
+    console.log("pastSearches is " + searchesArray);
+
+    // Render current search as button in search history
+    var searchHistBut = document.createElement('button');
+    searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+    searchHistBut.textContent = searchInput;
+    searchHistBut.addEventListener ('click', searchFromHistory);
+    document.querySelector('#search-history').appendChild(searchHistBut);
+
+    getHolidays(searchInput);
+  }
 })
-
-/////////////////////////////////////
-// Event listener for holiday listing.
-
-
-var selectedHoliday = document.getElementById('search-results');
-
-
-// var holidayDetails = document.getElementById('holiday-details');
-// var holidayDetailsContent;
-// var nameOfHoliday;
-
-var holidayName = document.querySelector(".hol-name")
-
-selectedHoliday.addEventListener('click', function(event) {
-
-  console.log("testing");
-  event.preventDefault();
-
-  holidayName = event.target;
-  console.log("Holiday Name: " + holidayName);
-
-
-  // nameOfHoliday = event.target.value;
-  // console.log(nameOfHoliday);
-
-  
-
-  // getHolidays(nameOfHoliday);
-
-  // window.location.href = `overview.html?name=${nameOfHoliday}`;
-  
- 
-  // holidayDetails.innerHTML = holidayDetailsContent;
-  
-      
-  // document.getElementById('search-results').appendChild(holidayDetails);
-
- 
-
-})
-/////////////////////////////////////
-  
-
 
 
 // Initializing Materialize DatePicker
@@ -230,6 +251,8 @@ function getFilteredHolidays()
   //TODO print each element in filteredData using Nicks function
 }
 
+document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+
 function loadCountrylist ()
 {
   
@@ -275,3 +298,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays);
+
+
+
+
+
+// Display search history from local storage
+function displaySearchHistory() {
+  var pastSearches = JSON.parse(localStorage.getItem('searches'));
+  if (pastSearches) {
+    for (i = 0; i < pastSearches.length; i++) {
+      var searchHistBut = document.createElement('button');
+      searchHistBut.classList.add('btn', 'waves-effect', 'waves-light', 'prevSearchBtn');
+      searchHistBut.textContent = pastSearches[i];
+      searchHistBut.addEventListener ('click', searchFromHistory);
+      document.querySelector('#search-history').appendChild(searchHistBut);
+    }
+  }
+};
+
+displaySearchHistory();
+
+// Search from search history
+function searchFromHistory (event) {
+  event.preventDefault();
+  searchInput = event.target.textContent;
+  document.getElementById('search-results').innerHTML = "";
+  getHolidays(searchInput);
+}
+
+

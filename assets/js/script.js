@@ -6,14 +6,14 @@ var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('select');
+//   var instances = M.FormSelect.init(elems, options);
+// });
 
 
 // Varaibles for holiday seach and getHolidays function
@@ -26,6 +26,11 @@ var holidayListingEl;
 // Variables to dislay search history from local storage
 searchesArray = [];
 var pastSearches = JSON.parse(localStorage.getItem('searches'));
+
+/////////////////////////
+var holidayItem;
+var holidayDetailsGroup = [];
+//////////////////////////
 
 // Get holidays matching search and render results to page
 function getHolidays() {
@@ -85,9 +90,41 @@ function getHolidays() {
       // Render search listing to page
       holidayListingEl = document.createElement('div');
       holidayListingEl.innerHTML = holidayListing;
+      holidayListingEl.setAttribute("class", "holidayItem");
 
       document.getElementById('search-results').appendChild(holidayListingEl);
   
+      ///////////////////////////////
+      //Event Listener for Holiday Listing. Setting Local Storage. 
+      
+      holidayItem = document.querySelectorAll(".holidayItem");
+
+      holidayItem.forEach((holidayItem) => {
+
+        holidayItem.setAttribute("style", "cursor: pointer;")
+
+        holidayItem.addEventListener('click', function() {
+          console.log("something else");
+
+
+          var holidayDetails = {
+            holname: searchedHolName,
+            date: searchedHolDate,
+            description: searchedHolDescription,
+            country: searchedHolCountry
+          };
+      
+          holidayDetailsGroup.push(holidayDetails);
+      
+          localStorage.setItem('details', JSON.stringify(holidayDetails));
+
+          window.location.href="overview.html";
+        });
+
+      })
+     
+
+      ///////////////////////////////////
     }
   })
 }
@@ -102,39 +139,6 @@ searchField.addEventListener('submit', function(event) {
     getHolidays(searchInput);
   }
 })
-
-/////////////////////////////////////
-// Event listener for holiday listing.
-
-
-// var selectedHoliday = document.getElementById('search-results');
-// var holidayDetails = document.getElementById('holiday-details');
-// var holidayDetailsContent;
-// var nameOfHoliday;
-
-
-
-// selectedHoliday.addEventListener('click', function(event) {
-//   event.preventDefault();
-
-//   nameOfHoliday = event.target.children[1];
-
-//   window.location.href = 'overview.html';
-
-//   getHolidays(nameOfHoliday);
-  
- 
-//   // holidayDetails.innerHTML = holidayDetailsContent;
-  
-      
-//   // document.getElementById('search-results').appendChild(holidayDetails);
-
- 
-
-// })
-/////////////////////////////////////
-  
-
 
 
 // Initializing Materialize DatePicker
@@ -157,8 +161,11 @@ var nextYearData;
 
 function fetchFilteredHolidays(event)
 {
+
+
   // stops page reload on submit
   event.preventDefault();
+
 
   // initialize thisYearData and nextYearData
   thisYearData = false;
@@ -168,7 +175,8 @@ function fetchFilteredHolidays(event)
   var thisYear = parseInt( moment().format("yyyy"));
 
   // get the selected country
-  var country = ""// Make this value equal the value from the country selector element
+  var countrySelectEL = document.querySelector("#country-select");
+  var country = countrySelectEL.value;
 
   if (country === "")
   {
@@ -189,8 +197,8 @@ function fetchFilteredHolidays(event)
 
   // get next year
   fetch("https://calendarific.com/api/v2/holidays?&api_key=" + apiKey + "&country="+country+"&year="+(thisYear+1))
-  .then(function (responce){
-    return responce.json();
+  .then(function (response){
+    return response.json();
   })
   .then(function (data)
   {
@@ -239,10 +247,61 @@ function getFilteredHolidays()
     filteredData = tempData;
   } 
 
+
   //TODO print each element in filteredData using Nicks function
 }
 
 document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+
+function loadCountrylist ()
+{
+  
+
+  var requestURL = "https://calendarific.com/api/v2/countries?&api_key="+apiKey;
+
+  fetch(requestURL)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var countryListEl = document.querySelector("#country-select");
+
+    var output = ""
+
+    for (var i = 0; i < data.response.countries.length; i++)
+    {
+      output += `<option value="${data.response.countries[i]["iso-3166"]}"> ${data.response.countries[i].country_name} </option>`;
+
+
+      var newCountryEl = document.createElement("option")
+      newCountryEl.textContent = data.response.countries[i].country_name;
+      newCountryEl.setAttribute("value",data.response.countries[i]["iso-3166"])
+
+      //countryListEl.appendChild(newCountryEl)
+    }
+    console.log(output);
+    
+  })
+}
+
+// Initializing Materialize DropDown
+/////////////////////////////////////////////
+//NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
+
+//loadCountrylist();
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+
+document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays);
+
+
+
+
 
 // Display search history from local storage
 function displaySearchHistory() {
@@ -267,3 +326,5 @@ function searchFromHistory (event) {
   document.getElementById('search-results').innerHTML = "";
   getHolidays(searchInput);
 }
+
+

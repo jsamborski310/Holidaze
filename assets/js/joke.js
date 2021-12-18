@@ -28,6 +28,4 @@ var diplayQuote= function (data) {
 
   randomQuote.append(quoteData);
 
-
-
 }

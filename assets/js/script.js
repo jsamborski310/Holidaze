@@ -43,42 +43,13 @@ function getHolidays() {
       return response.json();
     })
     .then(function (data) {
-      console.log("data from getHolidays is:");
-      console.log(data);
 
       // Iterate to find holiday name that matches
       for (searchedHolidayData of data.response.holidays) {
         if (searchInput !== searchedHolidayData.name) continue;
-        console.log("data from searchedHolidayData is:")
-        console.log(searchedHolidayData)
 
-        // Set variables to pass to displayHolidays
-        searchedHolDate = searchedHolidayData.date.iso;
-        searchedHolName = searchedHolidayData.name;
-        searchedHolDescription = searchedHolidayData.description;
-        searchedHolCountry = searchedHolidayData.country.name;
-        searchedHolType = searchedHolidayData.type[0];
 
-        // Template literal for search result listing
-        holidayListing = `
-        <section class="holiday-list-item holiday-type-federal mainContent">
-          <div class="holiday-content">
-              <h5 class="date hol-date">${searchedHolDate}</h5>
-              <h2 class="hol-name">${searchedHolName}</h2>
-              <p class="hol-desc">${searchedHolDescription}</p>
-              <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry}</p>
-          </div>
-        </section>`
-
-        // Render search listing to page
-        holidayListingEl = document.createElement('div');
-        holidayListingEl.innerHTML = holidayListing;
-        holidayListingEl.setAttribute("class", "holidayItem");
-
-        document.getElementById('search-results').appendChild(holidayListingEl);
-
-        //Event Listener for Holiday Listing. Setting Local Storage. 
-        displayHolidays();
+        printHolidayResult(searchedHolidayData.date.iso,searchedHolidayData.name,searchedHolidayData.description,searchedHolidayData.country.name,searchedHolidayData.states, searchedHolidayData.type)
       }
     })
 }
@@ -94,7 +65,6 @@ searchField.addEventListener('submit', function (event) {
     // Add current search to search history in local storage
     searchesArray.push(searchInput);
     localStorage.setItem('searches', JSON.stringify(searchesArray));
-    console.log("pastSearches is " + searchesArray);
 
     // Render current search as button in search history
     var searchHistBut = document.createElement('button');
@@ -196,27 +166,38 @@ function getFilteredHolidays() {
 
 
   //print each element in filteredData 
-
-  console.log(filteredData);
-
   for (var i = 0; i < filteredData.length; i++) {
-    printHolidayResult(filteredData[i].date.iso, filteredData[i].name, filteredData[i].description, filteredData[i].country.name);
+    printHolidayResult(filteredData[i].date.iso, filteredData[i].name, filteredData[i].description, filteredData[i].country.name, filteredData[i].states, filteredData[i].type);
   }
 }
 
-function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry) {
+function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry, searchedHolState, searchedHolType) {
 
-  console.log("This function was ran");
+  //figuring out what should be displayed for states
 
+  var statesData = "";
+
+  if (searchedHolState !== "All")
+  {
+    statesData = " - ";
+
+    for (var i = 0; i < searchedHolState.length; i++)
+    {
+      statesData += searchedHolState[i].name + ", ";
+    }
+
+    statesData = statesData.substring(0,statesData.length-2);
+  }
 
   // Template literal for search result listing
   var holidayListing = `
     <section class="holiday-list-item holiday-type-federal mainContent">
-      <div class="holiday-content">
-          <h5 class="date hol-date">${searchedHolDate}</h5>
+      <div class="holiday-content">        
+          <h5 class="date hol-date">${moment( searchedHolDate).format("MMMM DD, YYYY")}</h5>         
           <h2 class="hol-name">${searchedHolName}</h2>
           <p class="hol-desc">${searchedHolDescription}</p>
-          <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry}</p>
+          <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry + statesData}</p>
+          <p><span class="celebrated">Type:</span class="hol-country"> ${searchedHolType[0]}</p>
       </div>
     </section>`
 
@@ -270,7 +251,6 @@ function displayHolidays() {
 
   holidayItem.forEach((holidayItems) => {
 
-    console.log("holiday items 2: " + holidayItems)
     holidayItems.setAttribute("style", "cursor: pointer;")
 
     holidayItems.addEventListener('click', function (event) {

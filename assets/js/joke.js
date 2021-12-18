@@ -13,7 +13,6 @@ var getQuotes = function () {
       return response.json();
     })
     .then(function (data) {
-console.log(data)
       diplayQuote(data.quote);
      
       diplayQuote('-' + data.author);

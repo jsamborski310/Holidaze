@@ -1,7 +1,7 @@
 :root {
     --main-text: #000836;
     --pink: #F5326E;
-    --theme-grey: #878AA0
+    --theme-grey: #878AA0;
   }
 
 * {
@@ -87,10 +87,6 @@ main {
 input[type=text]:not(.browser-default) {
     border-bottom: 2px solid black;
 }
-.filters .input-field {
-    /* margin-bottom: -50px; */
-    /* padding-bottom: 50px; */
-}
 
 .select-wrapper input.select-dropdown:focus,
 input[type=text]:not(.browser-default):focus:not([readonly]) {
@@ -126,8 +122,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     color: var(--pink)
 }
 .active {
-    color: var(--theme-grey)
-
+    color: var(--theme-grey);
 }
 
 /* Holiday List. Right Side. */
@@ -151,6 +146,9 @@ h3 {
     font-size: 30px;
     font-weight: bold;
     padding-top:20px;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]) + label {
+    color:var(--theme-grey);
 }
 /* Previously Searched Buttons */
 .btnList {
@@ -177,7 +175,6 @@ h3 {
 h2{
     font-weight: 700;
     font-size: 25px;
-    line-height: 0;
     margin-top: 30px;
 }
 .date {
@@ -188,6 +185,12 @@ h2{
 }
 .celebrated {
     font-weight:700;
+}
+.type-holiday {
+    margin-top: -13px;
+}
+.celebrated-type {
+    margin-top:30px;
 }
 
 .holiday-list-item {

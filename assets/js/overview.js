@@ -23,7 +23,7 @@ function showHolidayOverview () {
 
  var  holidayDetails = JSON.parse(localStorage.getItem('details'));
 
- holidayDate = moment(holidayDetails.date, 'YYYY-MM-DD').format('MMMM DD');
+ holidayDate = moment(holidayDetails.date, 'MMMM DD, YYYY').format('MMMM DD, YYYY');
 
   
   holidayEl = `
@@ -31,7 +31,8 @@ function showHolidayOverview () {
   <h5 class="date">${holidayDate}</h5>
   <h2>${holidayDetails.holname}</h2>
   <p>${holidayDetails.description}</p>
-  <p><span class="celebrated">Celebrated in:</span> ${holidayDetails.country}</p>
+  <p class="celebrated-type"><span class="celebrated">Celebrated in:</span> ${holidayDetails.country}</p>
+  <p class="type-holiday"><span class="celebrated">Type:</span> ${holidayDetails.type}</p>
  
   `
 

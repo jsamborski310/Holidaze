@@ -52,8 +52,6 @@ showHolidayOverview ()
 var getHistory = function () {
 
   thisDay = moment(holidayDate, 'MMMM DD').format('M/DD');
-  console.log("this day: ", thisDay);
-
     var history = "https://history.muffinlabs.com/date/" + thisDay;
   
     fetch(history)

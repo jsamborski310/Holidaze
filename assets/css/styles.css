@@ -139,6 +139,11 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     border-left:60px solid var(--pink);
 }
 
+.hol-date {
+    width: fit-content;
+    margin-right: 0px;
+}
+
 
 /* Sidebar */
 

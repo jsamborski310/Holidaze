@@ -227,8 +227,38 @@ function getFilteredHolidays()
   } 
 
 
-  //TODO print each element in filteredData using Nicks function
+  //print each element in filteredData 
+
+  console.log(filteredData);
+  
+  for (var i = 0; i < filteredData.length; i++)
+  {
+    printHolidayResult(filteredData[i].date.iso,filteredData[i].name,filteredData[i].description,filteredData[i].country.name);
+  }
 }
+
+function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry)
+{
+  
+
+  // Template literal for search result listing
+  var holidayListing = `
+    <section class="holiday-list-item holiday-type-federal mainContent">
+      <div class="holiday-content">
+          <h5 class="date hol-date">${searchedHolDate}</h5>
+          <h2 class="hol-name">${searchedHolName}</h2>
+          <p class="hol-desc">${searchedHolDescription}</p>
+          <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry}</p>
+      </div>
+    </section>`
+  
+  // Render search listing to page
+  holidayListingEl = document.createElement('div');
+  holidayListingEl.innerHTML = holidayListing;
+  
+  document.getElementById('search-results').appendChild(holidayListingEl);
+}
+
 
 function loadCountrylist ()
 {

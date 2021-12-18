@@ -89,32 +89,33 @@ function getHolidays() {
   
       ///////////////////////////////
       //Event Listener for Holiday Listing. Setting Local Storage. 
+      displayHolidays();
       
-      holidayItem = document.querySelectorAll(".holidayItem");
+      // holidayItem = document.querySelectorAll(".holidayItem");
 
-      holidayItem.forEach((holidayItem) => {
+      // holidayItem.forEach((holidayItem) => {
 
-        holidayItem.setAttribute("style", "cursor: pointer;")
+      //   holidayItem.setAttribute("style", "cursor: pointer;")
 
-        holidayItem.addEventListener('click', function() {
-          console.log("something else");
+      //   holidayItem.addEventListener('click', function() {
+      //     console.log("something else");
 
 
-          var holidayDetails = {
-            holname: searchedHolName,
-            date: searchedHolDate,
-            description: searchedHolDescription,
-            country: searchedHolCountry
-          };
+      //     var holidayDetails = {
+      //       holname: searchedHolName,
+      //       date: searchedHolDate,
+      //       description: searchedHolDescription,
+      //       country: searchedHolCountry
+      //     };
       
-          holidayDetailsGroup.push(holidayDetails);
+      //     holidayDetailsGroup.push(holidayDetails);
       
-          localStorage.setItem('details', JSON.stringify(holidayDetails));
+      //     localStorage.setItem('details', JSON.stringify(holidayDetails));
 
-          window.location.href="overview.html";
-        });
+      //     window.location.href="overview.html";
+      //   });
 
-      })
+      // })
      
 
       ///////////////////////////////////
@@ -283,49 +284,53 @@ function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescrip
       </div>
     </section>`
 
+    holidayListingEl = document.createElement('div');
+    holidayListingEl.innerHTML = holidayListing;
+    holidayListingEl.setAttribute("class", "holidayItem");
+    
+    document.getElementById('search-results').appendChild(holidayListingEl);
+
+    displayHolidays();
+  /////////////////////////HERE
+  // // Render search listing to page
+  // holidayListingEl = document.createElement('div');
+  // holidayListingEl.innerHTML = holidayListing;
+  // holidayListingEl.setAttribute("class", "holidayItem");
   
-  // Render search listing to page
-  holidayListingEl = document.createElement('div');
-  holidayListingEl.innerHTML = holidayListing;
-  holidayListingEl.setAttribute("class", "holidayItem");
+  // document.getElementById('search-results').appendChild(holidayListingEl);
+
+  // holidayItem = document.querySelectorAll(".holidayItem");
   
-  document.getElementById('search-results').appendChild(holidayListingEl);
+  //     holidayItem.forEach((holidayItems) => {
+
+  //       console.log("holiday items 2: " + holidayItems)
+  //       holidayItems.setAttribute("style", "cursor: pointer;")
+
+  //       holidayItems.addEventListener('click', function(event) {
+
+  //         holidayNameOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.firstChild.textContent;
+  //         holidayDateOver = event.target.parentNode.childNodes[0].nextElementSibling.firstChild.textContent;
+  //         holidayDescriptionOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
+  //         holidayCountryOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.childNodes[1].textContent;
 
 
-
-  holidayItem = document.querySelectorAll(".holidayItem");
-  
-
-      holidayItem.forEach((holidayItems) => {
-
-        console.log("holiday items 2: " + holidayItems)
-        holidayItems.setAttribute("style", "cursor: pointer;")
-
-        holidayItems.addEventListener('click', function(event) {
-
-          holidayNameOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.firstChild.textContent;
-          holidayDateOver = event.target.parentNode.childNodes[0].nextElementSibling.firstChild.textContent;
-          holidayDescriptionOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
-          holidayCountryOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.childNodes[1].textContent;
-
-
-          var holidayDetails = {
-            holname: holidayNameOver,
-            date: holidayDateOver,
-            description: holidayDescriptionOver,
-            country: holidayCountryOver
+  //         var holidayDetails = {
+  //           holname: holidayNameOver,
+  //           date: holidayDateOver,
+  //           description: holidayDescriptionOver,
+  //           country: holidayCountryOver
             
-          };
+  //         };
 
           
-          holidayDetailsGroup.push(holidayDetails);
+  //         holidayDetailsGroup.push(holidayDetails);
       
-          localStorage.setItem('details', JSON.stringify(holidayDetails));
+  //         localStorage.setItem('details', JSON.stringify(holidayDetails));
 
-          window.location.href="overview.html";
-        });
+  //         window.location.href="overview.html";
+  //       });
 
-      })
+  //     })
 }
 
 document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays)
@@ -404,4 +409,44 @@ function searchFromHistory (event) {
   getHolidays(searchInput);
 }
 
+function displayHolidays() {
+  // Render search listing to page
+  // holidayListingEl = document.createElement('div');
+  // holidayListingEl.innerHTML = holidayListing;
+  // holidayListingEl.setAttribute("class", "holidayItem");
+  
+  // document.getElementById('search-results').appendChild(holidayListingEl);
 
+      holidayItem = document.querySelectorAll(".holidayItem");
+  
+      holidayItem.forEach((holidayItems) => {
+
+        console.log("holiday items 2: " + holidayItems)
+        holidayItems.setAttribute("style", "cursor: pointer;")
+
+        holidayItems.addEventListener('click', function(event) {
+
+          holidayNameOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.firstChild.textContent;
+          holidayDateOver = event.target.parentNode.childNodes[0].nextElementSibling.firstChild.textContent;
+          holidayDescriptionOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
+          holidayCountryOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.childNodes[1].textContent;
+
+
+          var holidayDetails = {
+            holname: holidayNameOver,
+            date: holidayDateOver,
+            description: holidayDescriptionOver,
+            country: holidayCountryOver
+            
+          };
+
+          
+          holidayDetailsGroup.push(holidayDetails);
+      
+          localStorage.setItem('details', JSON.stringify(holidayDetails));
+
+          window.location.href="overview.html";
+        });
+
+      })
+}

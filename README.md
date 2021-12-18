@@ -1,34 +1,57 @@
-# Holidaze
-
-Need to credit: https://history.muffinlabs.com/
+# HoliDAZE 
 
 
-## Is this Line Needed?
-script.js
-Line 20
-var searchInput = "Christmas Eve";
+# Description:
 
-This element is created on line 78.
+HoliDAZE is an application in which the user can search for a certain holiday with the option of filtering the results by country and date.
 
-## Date Formatting
-Need to format the date so that it's just month and day. Exclude year. 
-
-## Add Button to Search Holidays
-
-
-    holidayEl = `
-    
-    <div class="holiday-content">
-    <h5 class="date">${date}</h5>
-    <h2>${holname}</h2>
-    <p>${description}</p>
-    <p><span class="celebrated">Celebrated in:</span> ${country}</p>
-    </div>
-    
-    `
-
-    holidayOverview.append(holidayEl);
+# Table of contents
+* [Description](#description)
+* [Usage](#usage)
+* [Technologies](#technologies)
+* [Demo](#demo)
+* [Screenshot](#screenshot)
 
 
+# Usage:
 
-    holidayDetails.date
+Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. 
+
+Once the user has typed in a specific holiday they are presented with information pertaining to that holiday. If the pop up box is clicked the user will be redirected to another page that contains more info on the searched holiday and in addition to that the user will be offered a random historic event that took place on the current day. 
+
+
+# Technologies:
+
+* JavaScript
+
+* JQUERY
+
+* CSS
+
+* HTML
+
+* Materialize-CSS componets 
+
+* API's used : 
+  1. [Holiday data](https://calendarific.com/) : Access holiday data and print to page dynamically.
+  2. [Random quote](http://quotes.stormconsultancy.co.uk/api) : Pulls random quote to be printed onto page.
+  3. [Today in history](https://history.muffinlabs.com/) : Pulls a historic event on the current day in time.
+  4. [Moment](https://momentjs.com/) : Captures and displays current year.
+ 
+
+# Demo:
+
+Here's a live screencast of HoliDAZE in action: 
+
+
+
+
+
+# Screenshot:
+
+GitHub:
+
+GitHub Pages: 
+
+!screenshot goes here!
+

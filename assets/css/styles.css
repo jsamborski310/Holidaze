@@ -26,9 +26,11 @@ main {
     margin: 0 5%;
 }
 .col.s12 {
-    padding: 20px 20px 40px 20px;
+    padding: 0 20px 0 20px;
 }
-
+.row {
+    margin-bottom: 5px;
+}
 /* Nav bar. Quote. Right Side. */
 
 .custom-nav {
@@ -86,8 +88,8 @@ input[type=text]:not(.browser-default) {
     border-bottom: 2px solid black;
 }
 .filters .input-field {
-    margin-bottom: -50px;
-    padding-bottom: 50px;
+    /* margin-bottom: -50px; */
+    /* padding-bottom: 50px; */
 }
 
 .select-wrapper input.select-dropdown:focus,
@@ -102,6 +104,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     line-height:0;
     border-radius: 8px;
     text-transform: capitalize;
+    margin-bottom:40px;
 }
 .select-wrapper .caret {
     fill: var(--pink);
@@ -138,17 +141,16 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 
 
 /* Sidebar */
-.searchBtn {
-    background-color: #F5326E; 
-}
 
-h6 {
+h3 {
     font-size: 30px;
     font-weight: bold;
+    padding-top:20px;
 }
 /* Previously Searched Buttons */
 .btnList {
     margin-top:35px;
+    margin-bottom: 40px;
 }
 .prevSearchBtn {
     width:100%;
@@ -159,6 +161,10 @@ h6 {
     text-transform: capitalize;
     margin:5px 0;
     border:none;
+    overflow: hidden;
+    max-width: 75ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Holiday Listing */

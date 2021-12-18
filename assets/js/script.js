@@ -46,7 +46,7 @@ function getHolidays() {
 
       // Iterate to find holiday name that matches
       for (searchedHolidayData of data.response.holidays) {
-        if (searchInput !== searchedHolidayData.name) continue;
+        if (!searchedHolidayData.name.toLowerCase().includes(searchInput.toLowerCase())) continue;
 
 
         printHolidayResult(searchedHolidayData.date.iso,searchedHolidayData.name,searchedHolidayData.description,searchedHolidayData.country.name,searchedHolidayData.states, searchedHolidayData.type)
@@ -196,8 +196,8 @@ function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescrip
           <h5 class="date hol-date">${moment( searchedHolDate).format("MMMM DD, YYYY")}</h5>         
           <h2 class="hol-name">${searchedHolName}</h2>
           <p class="hol-desc">${searchedHolDescription}</p>
-          <p><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry + statesData}</p>
-          <p><span class="celebrated">Type:</span class="hol-country"> ${searchedHolType[0]}</p>
+          <p class="celebrated-type"><span class="celebrated">Celebrated in:</span class="hol-country"> ${searchedHolCountry + statesData}</p>
+          <p class="type-holiday"><span class="celebrated">Type:</span class="hol-country"> ${searchedHolType[0]}</p>
       </div>
     </section>`
 
@@ -259,13 +259,15 @@ function displayHolidays() {
       holidayDateOver = event.target.parentNode.childNodes[0].nextElementSibling.firstChild.textContent;
       holidayDescriptionOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.firstChild.textContent;
       holidayCountryOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.childNodes[1].textContent;
+      holidayTypeOver = event.target.parentNode.childNodes[0].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.childNodes[1].textContent;
 
 
       var holidayDetails = {
         holname: holidayNameOver,
         date: holidayDateOver,
         description: holidayDescriptionOver,
-        country: holidayCountryOver
+        country: holidayCountryOver,
+        type: holidayTypeOver
 
       };
 

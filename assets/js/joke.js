@@ -4,7 +4,7 @@ var randomQuote = $('#joke');
 
 var getQuotes = function () {
 
-  var requestUrl = 'http://quotes.stormconsultancy.co.uk/random.json';
+  var requestUrl = 'https://quotes.stormconsultancy.co.uk/random.json';
 
   fetch(requestUrl)
 

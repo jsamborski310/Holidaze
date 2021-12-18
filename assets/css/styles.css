@@ -198,6 +198,31 @@ h2{
     border-radius: 15px;
 }
 
+/* Date Picker Calendar */
+.datepicker-date-display {
+    background-color:var(--pink);
+}
+.modal.datepicker-modal.open {
+    border-radius: 15px;
+}
+.datepicker-date-display .date-text {
+    color:white;
+}
+.datepicker-controls .select-month input {
+    width: 80px;
+}
+.datepicker-table td.is-today,
+.datepicker-cancel, 
+.datepicker-done {
+    color:var(--pink);
+}
+
+.datepicker-day-button:focus,
+.datepicker-table td.is-selected {
+    background-color:var(--pink);
+}
+
+
 /* Page Footer */
 
 .page-footer {

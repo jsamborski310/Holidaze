@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Varaibles for holiday seach and getHolidays function
 var searchField = document.querySelector('#search-field');
 var serachBar = document.querySelector('#searchbar');
-var searchInput = "Christmas Eve";
+var searchInput = "";
 var holidayListing;
 var holidayListingEl;
 

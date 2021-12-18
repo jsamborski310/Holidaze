@@ -5,10 +5,10 @@ var apiKey = 'Baea669456e5e8582bc6fcb7e15ee38bc52cc480'
 //NOTE: During initial set-up, this was throwing an error. I removed "options" from the parameter in order to get it working. The commented out code is the original code. 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('select');
-  var instances = M.FormSelect.init(elems);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('select');
+//   var instances = M.FormSelect.init(elems);
+// });
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   var elems = document.querySelectorAll('select');
@@ -24,8 +24,14 @@ var holidayListing;
 var holidayListingEl;
 
 // Variables to dislay search history from local storage
-searchesArray = [];
-var pastSearches = JSON.parse(localStorage.getItem('searches'));
+var searchesArray = [];
+var searchesArrayTrue = JSON.parse(localStorage.getItem('searches'));
+
+if (searchesArrayTrue) {
+  searchesArray = searchesArrayTrue;
+}
+
+var pastSearches;
 
 /////////////////////////
 var holidayItem;
@@ -387,7 +393,7 @@ document.querySelector("#filter-search").addEventListener("submit",fetchFiltered
 
 // Display search history from local storage
 function displaySearchHistory() {
-  var pastSearches = JSON.parse(localStorage.getItem('searches'));
+  pastSearches = JSON.parse(localStorage.getItem('searches'));
   if (pastSearches) {
     for (i = 0; i < pastSearches.length; i++) {
       var searchHistBut = document.createElement('button');

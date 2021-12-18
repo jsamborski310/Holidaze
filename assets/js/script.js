@@ -168,8 +168,8 @@ function getFilteredHolidays() {
     return;
   }
 
-  var startTimeFilterData = "2021-02-05"; // TODO make these have the value of the date filter elements
-  var endTimeFilterData = "2021-07-15";
+  var startTimeFilterData = document.querySelector("#datepicker-input-start").value; // TODO make these have the value of the date filter elements
+  var endTimeFilterData = document.querySelector("#datepicker-input-end").value;
 
   var filteredData = thisYearData.response.holidays.concat(nextYearData.response.holidays);
 

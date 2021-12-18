@@ -1,7 +1,7 @@
 # HoliDAZE 
 
 
-# Description:
+# Description
 
 HoliDAZE is an application in which the user can search for a certain holiday with the option of filtering the results by country and date.
 
@@ -13,14 +13,14 @@ HoliDAZE is an application in which the user can search for a certain holiday wi
 * [Screenshot](#screenshot)
 
 
-# Usage:
+# Usage
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. 
 
 Once the user has typed in a specific holiday they are presented with information pertaining to that holiday. If the pop up box is clicked the user will be redirected to another page that contains more info on the searched holiday and in addition to that the user will be offered a random historic event that took place on the current day. 
 
 
-# Technologies:
+# Technologies
 
 * JavaScript
 
@@ -39,19 +39,43 @@ Once the user has typed in a specific holiday they are presented with informatio
   4. [Moment](https://momentjs.com/) : Captures and displays current year.
  
 
-# Demo:
+# The Preview
 
 Here's a live screencast of HoliDAZE in action: 
 
+https://www.loom.com/share/71921d352f2b4d0eb35b6392c6534795
 
 
 
+###### Holiday Finder
 
-# Screenshot:
 
-GitHub:
+![Screen shot of HoliDAZE.](assets/images/holidaze-presearch.png)
 
-GitHub Pages: 
 
-!screenshot goes here!
+###### Holiday Finder with Search Input Results
+
+
+![Screen shot of HoliDAZE after search input.](assets/images/holidaze-searchinput.png)
+
+
+###### Holiday Finder with Filter Results
+
+
+![Screen shot of HoliDAZE after filter search.](assets/images/holidaze-filtersearch.png)
+
+
+![Screen shot of the HoliDAZE country filter.](assets/images/country-filter.png)
+
+
+![Screen shot of the HoliDAZE datepicker calendar.](assets/images/Calendar-datepicker.png)
+
+
+
+# Take a Look
+
+GitHub: https://github.com/jsamborski310/Holidaze
+
+GitHub Pages: https://jsamborski310.github.io/Holidaze/
+
 

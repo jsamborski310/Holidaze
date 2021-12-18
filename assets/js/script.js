@@ -167,6 +167,8 @@ function fetchFilteredHolidays(event)
   event.preventDefault();
 
 
+  document.getElementById('search-results').innerHTML = "";
+
   // initialize thisYearData and nextYearData
   thisYearData = false;
   nextYearData = false;
@@ -261,6 +263,7 @@ function getFilteredHolidays()
 function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescription, searchedHolCountry)
 {
   
+  console.log("This function was ran");
 
   // Template literal for search result listing
   var holidayListing = `
@@ -276,11 +279,40 @@ function printHolidayResult(searchedHolDate, searchedHolName, searchedHolDescrip
   // Render search listing to page
   holidayListingEl = document.createElement('div');
   holidayListingEl.innerHTML = holidayListing;
+  holidayListingEl.setAttribute("class", "holidayItem");
   
   document.getElementById('search-results').appendChild(holidayListingEl);
+
+
+
+  holidayItem = document.querySelectorAll(".holidayItem");
+
+      holidayItem.forEach((holidayItem) => {
+
+        holidayItem.setAttribute("style", "cursor: pointer;")
+
+        holidayItem.addEventListener('click', function() {
+          console.log("something else");
+
+
+          var holidayDetails = {
+            holname: searchedHolName,
+            date: searchedHolDate,
+            description: searchedHolDescription,
+            country: searchedHolCountry
+          };
+      
+          holidayDetailsGroup.push(holidayDetails);
+      
+          localStorage.setItem('details', JSON.stringify(holidayDetails));
+
+          window.location.href="overview.html";
+        });
+
+      })
 }
 
-document.querySelector("form").addEventListener("submit",fetchFilteredHolidays)
+document.querySelector("#filter-search").addEventListener("submit",fetchFilteredHolidays)
 
 function loadCountrylist ()
 {
